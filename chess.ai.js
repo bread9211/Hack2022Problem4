@@ -143,14 +143,11 @@ var kingEvalWhite = [
 
 var kingEvalBlack = reverseArray(kingEvalWhite);
 
-
-
-
-var getPieceValue = function (piece, x, y) {
+var getPieceValue = function(piece, x, y) {
     if (piece === null) {
         return 0;
     }
-    var getAbsoluteValue = function (piece, isWhite, x ,y) {
+    var getAbsoluteValue = function(piece, isWhite, x ,y) {
         if (piece.type === 'p') {
             return 10 + ( isWhite ? pawnEvalWhite[y][x] : pawnEvalBlack[y][x] );
         } else if (piece.type === 'r') {
@@ -180,15 +177,8 @@ var getBestMove = function (game) {
     positionCount = 0;
     var depth = 3;
 
-    var d = new Date().getTime();
     var bestMove = minimaxRoot(depth, game, true);
-    var d2 = new Date().getTime();
-    var moveTime = (d2 - d);
-    var positionsPerS = ( positionCount * 1000 / moveTime);
 
-    $('#position-count').text(positionCount);
-    $('#time').text(moveTime/1000 + 's');
-    $('#positions-per-s').text(positionsPerS);
     return bestMove;
 };
 
